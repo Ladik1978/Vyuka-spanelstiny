@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Španělština od nuly</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Español paso a paso</p>
+      <h1>Španělština od nuly</h1>
+    </div>
+    <nav aria-label="Hlavní navigace">
+      <button class="nav-btn active" data-view="learn">Lekce</button>
+      <button class="nav-btn" data-view="games">Hry</button>
+      <button class="nav-btn" data-view="dictionary">Slovník</button>
+      <button class="nav-btn" data-view="progress">Pokrok</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="learn" class="view active">
+      <aside class="lesson-list" id="lessonList" aria-label="Seznam lekcí"></aside>
+      <section class="lesson-panel">
+        <div class="lesson-hero">
+          <div>
+            <p class="eyebrow" id="lessonNumber">Lekce</p>
+            <h2 id="lessonTitle"></h2>
+            <p id="lessonSummary"></p>
+          </div>
+          <div class="score-box">
+            <span id="lessonCounts"></span>
+            <strong id="overallCount"></strong>
+          </div>
+        </div>
+        <div class="section-head">
+          <h3>Slovíčka</h3>
+          <button id="shuffleLesson" class="small-btn">Procvičit lekci</button>
+        </div>
+        <div id="wordGrid" class="word-grid"></div>
+        <div class="section-head">
+          <h3>Fráze</h3>
+        </div>
+        <div id="phraseList" class="phrase-list"></div>
+        <div class="summary-box">
+          <h3>Shrnutí lekce</h3>
+          <p id="lessonWrap"></p>
+        </div>
+      </section>
+    </section>
+
+    <section id="games" class="view">
+      <div class="game-shell">
+        <div class="game-menu">
+          <button class="game-tab active" data-game="quiz">Rychlý kvíz</button>
+          <button class="game-tab" data-game="falling">Padající slova</button>
+          <button class="game-tab" data-game="pairs">Pexeso překladů</button>
+          <button class="game-tab" data-game="type">Doplň překlad</button>
+        </div>
+        <div class="game-card">
+          <div class="section-head">
+            <div>
+              <h2 id="gameTitle">Rychlý kvíz</h2>
+              <p id="gameHelp"></p>
+            </div>
+            <select id="gameLesson" aria-label="Výběr lekce"></select>
+          </div>
+          <div id="gameArea"></div>
+          <div class="game-score">
+            <span>Správně: <strong id="rightScore">0</strong></span>
+            <span>Chyby: <strong id="wrongScore">0</strong></span>
+            <button id="resetGame" class="small-btn">Nová hra</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dictionary" class="view">
+      <div class="dictionary-tools">
+        <div>
+          <p class="eyebrow">Slovník a tisk</p>
+          <h2>Všechna slovíčka a fráze</h2>
+        </div>
+        <input id="searchBox" type="search" placeholder="Hledat španělsky nebo česky">
+        <button id="printDict" class="print-btn">Tisk / PDF</button>
+      </div>
+      <div class="dict-stats" id="dictStats"></div>
+      <div id="dictionaryTable" class="dictionary-table"></div>
+    </section>
+
+    <section id="progress" class="view">
+      <div class="progress-panel">
+        <p class="eyebrow">Tvůj trénink</p>
+        <h2>Pokrok v aplikaci</h2>
+        <p>Pokrok se ukládá jen v tomto prohlížeči. Na GitHub Pages bude fungovat stejně bez serveru.</p>
+        <div class="progress-grid" id="progressGrid"></div>
+        <button id="clearProgress" class="small-btn danger">Vynulovat pokrok</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Začni pomalu: 10 minut denně, nahlas opakovat výslovnost.</span>
+    <span>Barvy: rojo y amarillo.</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
