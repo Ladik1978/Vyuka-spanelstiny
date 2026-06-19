@@ -1,6 +1,6 @@
 # Španělština od nuly
 
-Statická webová aplikace pro úplné začátečníky ve španělštině.
+Statická webová applikace pro úplné začátečníky ve španělštině.
 
 ## Obsah
 
