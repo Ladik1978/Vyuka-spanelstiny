@@ -450,6 +450,8 @@ const lessons = lessonSource.map((lesson, lessonIndex) => ({
 
 const allWords = lessons.flatMap(lesson => lesson.words);
 const allPhrases = lessons.flatMap(lesson => lesson.phrases);
+allWords.forEach((word, index) => { word.number = index + 1; });
+allPhrases.forEach((phrase, index) => { phrase.number = index + 1; });
 const allItems = [...allWords, ...allPhrases];
 
 const state = {
@@ -500,6 +502,12 @@ function sample(array, count) {
 function lessonPool() {
   const chosen = Number($("#gameLesson").value);
   return chosen === -1 ? allWords : lessons[chosen].words;
+}
+
+function answerChoices(item, pool) {
+  const distractors = pool.filter(word => word.id !== item.id);
+  const choices = [item, ...sample(distractors, Math.min(3, distractors.length))];
+  return sample(choices, choices.length);
 }
 
 function renderNavigation() {
@@ -596,7 +604,7 @@ function renderQuiz() {
   const pool = lessonPool();
   const item = sample(pool, 1)[0];
   state.currentItem = item;
-  const answers = sample([item, ...sample(allWords.filter(word => word.id !== item.id), 5)], 4);
+  const answers = answerChoices(item, pool);
   $("#gameArea").innerHTML = `
     <div class="game-area-inner">
       <div class="prompt-card"><span>Přelož:</span><strong>${item.es}</strong><span>${item.pron}</span></div>
@@ -618,7 +626,7 @@ function renderFalling() {
   const pool = lessonPool();
   const item = sample(pool, 1)[0];
   state.currentItem = item;
-  const answers = sample([item, ...sample(allWords.filter(word => word.id !== item.id), 5)], 4);
+  const answers = answerChoices(item, pool);
   state.fallTop = 0;
   $("#gameArea").innerHTML = `
     <div class="game-area-inner">
@@ -716,10 +724,10 @@ function renderDictionary() {
   $("#dictStats").textContent = `Celkem: ${allWords.length} slovíček a ${allPhrases.length} frází. Zobrazeno: ${rows.length}.`;
   $("#dictionaryTable").innerHTML = rows.map(item => `
     <div class="dict-row">
-      <span class="tag">${item.type === "word" ? "slovo" : "fráze"} ${item.lessonIndex + 1}</span>
+      <span class="tag">${item.type === "word" ? "slovo" : "fráze"} ${item.number}</span>
       <strong>${item.es}</strong>
       <span>${item.cs}</span>
-      <span class="pron">${item.pron}</span>
+      <span class="pron">${item.pron} · lekce ${item.lessonIndex + 1}</span>
     </div>
   `).join("");
 }
